@@ -19,4 +19,10 @@ public class CompraService {
         return catalogo;
     }
 
+    public double calcularTotal(Map<String, Integer> cantidades) {
+        return catalogo.entrySet().stream()
+                .mapToDouble(e -> e.getValue().getPrecio() * cantidades.getOrDefault(e.getKey(), 0))
+                .sum();
+    }
+
 }
