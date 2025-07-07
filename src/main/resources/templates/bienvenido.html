@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Bienvenido</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h1>¡Bienvenido, <span th:text="${usuario}"></span>!</h1>
+<p>Login exitoso</p>
+<p>Hora de ingreso: <span th:text="${#dates.format(new java.util.Date(), 'yyyy-MM-dd HH:mm:ss')}"></span></p>
+<a href="/">Ir a la tienda</a> | <a href="/logout">Cerrar sesión</a>
+</body>
+</html>

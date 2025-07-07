@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Resumen de Compra</title>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: Arial; margin: 0; background: #f7f7f7;}
+        .container { width: 90%; max-width: 600px; margin: 30px auto;}
+        table { background: #fff; border-radius: 8px; padding: 20px; width: 100%; box-shadow: 0 2px 8px #ccc;}
+        th, td { padding: 14px; text-align: center;}
+        h1 { color: #1976d2;}
+        .total { font-size: 1.5em; color: #388e3c;}
+        a.button { background: #1976d2; color: #fff; padding: 8px 16px; border-radius: 6px; text-decoration: none;}
+        a.button:hover { background: #0d47a1;}
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Resumen de Compra</h1>
+    <table>
+        <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Subtotal</th>
+        </tr>
+        <tr th:each="entry : ${productos}">
+            <td th:text="|${entry.value.nombre}|"></td>
+            <td th:text="${cantidades[entry.key]}"></td>
+            <td th:text="${#numbers.formatDecimal(entry.value.precio * cantidades[entry.key], 1, 2)}"></td>
+        </tr>
+    </table>
+    <div class="total">
+        Total: $<span th:text="${#numbers.formatDecimal(total, 1, 2)}"></span>
+    </div>
+    <br>
+    <a href="/compras" class="button">Volver a comprar</a>
+</div>
+</body>
+</html>

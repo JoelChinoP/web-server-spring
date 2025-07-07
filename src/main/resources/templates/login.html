@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Iniciar Sesión</title>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: Arial; background: #e8f0fe; margin: 0; }
+        .login-form { background: #fff; border-radius: 12px; padding: 30px; width: 350px; margin: 60px auto; box-shadow:0 4px 18px #b8b8b8;}
+        label, input { display: block; width: 100%; margin-bottom: 10px;}
+        button { width: 100%; background: #1976d2; color: #fff; border: none; padding: 10px; border-radius: 6px; font-size: 1rem; }
+        button:hover { background: #125ea7;}
+        small { color: #888; }
+        .error { color: #e53935; margin-bottom: 8px; text-align: center;}
+    </style>
+</head>
+<body>
+<div class="login-form">
+    <h2>Iniciar Sesión</h2>
+    <form th:action="@{/login}" method="post">
+        <label>Usuario:</label>
+        <input type="text" name="usuario" required>
+        <label>Contraseña:</label>
+        <input type="password" name="contrasenia" required>
+        <button type="submit">Ingresar</button>
+        <div th:if="${error}" class="error" th:text="${error}"></div>
+    </form>
+    <small>Usuario: admin | Contraseña: 1234</small>
+</div>
+</body>
+</html>

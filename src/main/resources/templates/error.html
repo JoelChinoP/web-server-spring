@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Error</title>
+    <meta charset="UTF-8">
+    <style>
+        body { background: #fbeaea; font-family: Arial; margin: 30px;}
+        .error-box { background: #fff; border: 1px solid #e57373; border-radius: 8px; padding: 25px; width: 400px; margin: auto; }
+        .error { color: #e53935; }
+        a { color: #1976d2; }
+    </style>
+</head>
+<body>
+<div class="error-box">
+    <h2 class="error">¡Error!</h2>
+    <div th:if="${mensajes != null}">
+        <ul>
+            <li th:each="m : ${mensajes}" th:text="m"></li>
+        </ul>
+    </div>
+    <a href="/login">Volver al login</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Compras de Productos</title>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: Arial; margin: 0; background: #f7f7f7;}
+        .container { width: 90%; max-width: 700px; margin: 30px auto;}
+        table { background: #fff; border-radius: 8px; padding: 20px; width: 100%; box-shadow: 0 2px 8px #ccc;}
+        th, td { padding: 12px; text-align: center; }
+        .errores { color: #e53935; margin-bottom: 15px; font-size:1rem;}
+        input[type="number"] { width: 70px; }
+        .ultimas { margin-top: 30px; background: #fff; border-radius: 8px; padding: 20px; box-shadow: 0 1px 4px #bbb;}
+        .logout { float: right; margin-top: 10px;}
+        a.button { background: #1976d2; color: #fff; padding: 8px 16px; border-radius: 6px; text-decoration: none;}
+        a.button:hover { background: #0d47a1;}
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Compra de Productos</h1>
+    <a href="/logout" class="logout button">Cerrar sesión</a>
+    <div th:if="${errores != null}">
+        <div class="errores">
+            <p th:each="err : ${errores}" th:text="err"></p>
+        </div>
+    </div>
+    <form th:action="@{/comprar}" method="post">
+        <table>
+            <tr>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+            </tr>
+            <tr th:each="entry : ${productos}">
+                <td th:text="|${entry.value.nombre}|"></td>
+                <td th:text="|$${entry.value.precio}|"></td>
+                <td>
+                    <input type="number" min="0" th:name="${entry.key}" value="0">
+                </td>
+            </tr>
+        </table>
+        <br>
+        <button type="submit">Comprar</button>
+    </form>
+
+    <div th:if="${ultimasCompras != null}" class="ultimas">
+        <h3>Última compra realizada</h3>
+        <table>
+            <tr>
+                <th>Producto</th>
+                <th>Cantidad</th>
+            </tr>
+            <tr th:each="entry : ${productos}">
+                <td th:text="${entry.value.nombre}"></td>
+                <td th:text="${ultimasCompras[entry.key] != null ? ultimasCompras[entry.key] : 0}"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>
