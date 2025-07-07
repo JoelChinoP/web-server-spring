@@ -15,6 +15,8 @@ public class CompraService {
         catalogo.put("platanos", new Producto("Plátano", 0.50));
         catalogo.put("naranjas", new Producto("Naranja", 0.75));
     }
-
+        public Map<String, Producto> getCatalogo() {
+        return catalogo;
+    }
 
 }
